@@ -18,7 +18,7 @@ public class Road3D : MonoBehaviour {
         angleOffset = car.localEulerAngles.y * Mathf.Deg2Rad - PerlinOrientation(car.position);
         Vector3 pos = car.position;
         //pos.y = Terrain.activeTerrain.SampleHeight(pos)+3;
-        pos.y = terrain.position.y + 3;
+        pos.y = terrain.position.y + 70;
         //pos.y += 3;
         car.position = pos;
         road = GetComponent<RoadMesh>();
@@ -44,7 +44,7 @@ public class Road3D : MonoBehaviour {
         Vector2 anchorxz = new Vector2(anchor.x, anchor.z);
         anchorxz += dir * distanceBetweenAnchors;
         //float h = Terrain.activeTerrain.SampleHeight(new Vector3(anchorxz[0], 0, anchorxz[1]));
-        return new Vector3(anchorxz[0], terrain.position.y, anchorxz[1]);
+        return new Vector3(anchorxz[0], terrain.position.y+70, anchorxz[1]);
     }
 
     float PerlinOrientation(Vector3 pos) {
