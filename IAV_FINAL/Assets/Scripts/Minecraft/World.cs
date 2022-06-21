@@ -63,9 +63,12 @@ public class World : MonoBehaviour {
             string name = toRemove[i];
             Chunk c;
             if (chunkDict.TryGetValue(name, out c)) {
-                Destroy(c.goChunk);
-                chunkDict.TryRemove(name, out c);
-                yield return null;
+                if (c.goChunk!=null) {
+                    Destroy(c.goChunk);
+                    chunkDict.TryRemove(name, out c);
+                    yield return null;
+                }
+               
             }
         }
     }
@@ -108,7 +111,7 @@ public class World : MonoBehaviour {
         this.transform.position = Vector3.zero;
         this.transform.rotation = Quaternion.identity;
         Vector3 ppos = player.transform.position;
-        player.transform.position = new Vector3(ppos.x, Utils.GenerateHeight(ppos.x, ppos.z) + 1, ppos.z);
+        player.transform.position = new Vector3(ppos.x, Utils.GenerateHeight(ppos.x, ppos.z) + 2, ppos.z);
         lastBuildPos = player.transform.position;
         //BuildChunkAt(WhichChunk(player.transform.position));
         Building(WhichChunk(lastBuildPos), radius);
