@@ -8,8 +8,8 @@ public class World : MonoBehaviour {
     public Material playerMaterial;
     public GameObject cube;
     public GameObject player;
-    public static int chunkSize = 16;
-    public static int radius = 3;
+    public static int chunkSize = 8;
+    public static int radius = 10;
     public static ConcurrentDictionary<string, Chunk> chunkDict;
     public static List<string> toRemove = new List<string>();
     Vector3 lastBuildPos;
@@ -35,14 +35,22 @@ public class World : MonoBehaviour {
             yield break;
         }
 
-        Building(new Vector3(x, y, z + chunkSize), rad);
-        yield return null;
-        Building(new Vector3(x, y, z - chunkSize), rad);
-        yield return null;
-        Building(new Vector3(x + chunkSize, y, z), rad);
-        yield return null;
-        Building(new Vector3(x - chunkSize, y, z), rad);
-        yield return null;
+        //para não fazer cubos em excesso e consumir recursos
+        if ( 
+            Mathf.Abs( player.GetComponent<Transform>().position.x-x ) <= 10
+            ) { 
+
+            Building(new Vector3(x, y, z + chunkSize), rad);
+            yield return null;
+            //Building(new Vector3(x, y, z - chunkSize), rad);
+            //yield return null;
+            Building(new Vector3(x + chunkSize, y, z), rad);
+            yield return null;
+            Building(new Vector3(x - chunkSize, y, z), rad);
+            yield return null;
+        }
+
+        
        // Building(new Vector3(x, y + chunkSize, z), rad);
        // yield return null;
        // Building(new Vector3(x, y - chunkSize, z), rad);
@@ -77,14 +85,24 @@ public class World : MonoBehaviour {
     IEnumerator DrawChunks() {
         drawing = true;
         foreach (KeyValuePair<string, Chunk> c in chunkDict) {
-            if (c.Value.status == Chunk.ChunkStatus.DRAW) {
-                c.Value.DrawChunk();
-                yield return null;
 
+            if (c.Value.goChunk!=null) {
+
+                if (c.Value.status == Chunk.ChunkStatus.DRAW) {
+                    c.Value.DrawChunk();
+                    yield return null;
+
+                }
+                if (c.Value.goChunk && Vector3.Distance(player.transform.position, c.Value.goChunk.transform.position) > chunkSize * radius) {
+                    toRemove.Add(c.Key);
+                }
+
+                //remover os que estão atrás
+                if (c.Value.goChunk.transform.position.z+10 < player.transform.position.z) {
+                    toRemove.Add(c.Key);
+                }
             }
-            if (c.Value.goChunk && Vector3.Distance(player.transform.position, c.Value.goChunk.transform.position) > chunkSize * radius) {
-                toRemove.Add(c.Key);
-            }
+            
         }
         StartCoroutine(RemoveChunks());
         drawing = false;

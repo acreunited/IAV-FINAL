@@ -12,9 +12,12 @@ public class Road3D : MonoBehaviour {
     public Transform car;
     RoadMesh road;
     float angleOffset;
+    private Vector3 last;
 
     // Start is called before the first frame update
     void Start() {
+        
+        last = new Vector3();
         angleOffset = car.localEulerAngles.y * Mathf.Deg2Rad - PerlinOrientation(car.position);
         Vector3 pos = car.position;
         //pos.y = Terrain.activeTerrain.SampleHeight(pos)+3;
@@ -23,8 +26,29 @@ public class Road3D : MonoBehaviour {
         car.position = pos;
         road = GetComponent<RoadMesh>();
         BuildRoadAhead(car.position - car.forward * 4);
+
        
     }
+
+  /*  void Update() {
+        if(last!=null) {
+            if (car.position.z >= last.z) {
+                
+                Debug.Log(last.x + " " + last.y + " " + last.z);
+                last = new Vector3();
+
+                angleOffset = car.localEulerAngles.y * Mathf.Deg2Rad - PerlinOrientation(car.position);
+                Vector3 pos = car.position;
+                //pos.y = Terrain.activeTerrain.SampleHeight(pos)+3;
+                pos.y = terrain.position.y + 70;
+                //pos.y += 3;
+                car.position = pos;
+                road = GetComponent<RoadMesh>();
+                BuildRoadAhead(car.position - car.forward * 4);
+            }
+           
+        }
+    }*/
 
     void BuildRoadAhead(Vector3 startPosition) {
         List<Vector3> anchors = new List<Vector3>();
@@ -33,6 +57,7 @@ public class Road3D : MonoBehaviour {
         for (int i = 0; i < numSegments; i++) {
             Vector3 newAnchor = NextAnchor(anchors[i]);
             anchors.Add(newAnchor);
+            last = newAnchor;
         }
         VertexPath vertexPath = GeneratePath(anchors, 0.2f, false, PathSpace.xyz);
         road.BuildRoad(vertexPath);
