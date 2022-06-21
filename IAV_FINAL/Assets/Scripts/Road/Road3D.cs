@@ -26,7 +26,7 @@ public class Road3D : MonoBehaviour {
         car.position = pos;
         road = GetComponent<RoadMesh>();
         BuildRoadAhead(car.position - car.forward * 4);
-
+        
        
     }
 
