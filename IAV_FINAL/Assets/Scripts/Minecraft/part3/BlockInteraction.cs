@@ -16,14 +16,8 @@ public class BlockInteraction : MonoBehaviour
         if (interaction) {
             interactionType = Input.GetMouseButtonDown(0) ? InteractionType.DESTROY : InteractionType.BUILD;
             RaycastHit hit;
-
-           
                
             if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 10)) {
-
-                if (hit.collider.gameObject.CompareTag("canRemove")) {
-                    Debug.Log("canRemove");
-                }
 
                 string chunkName = hit.collider.gameObject.name;
                 float chunkx = hit.collider.gameObject.transform.position.x;

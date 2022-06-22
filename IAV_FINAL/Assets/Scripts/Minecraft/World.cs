@@ -49,7 +49,7 @@ public class World : MonoBehaviour
 
         if (!chunkDict.TryGetValue(name, out c)) {
             c = new Chunk(chunkPos, material);
-            c.goChunk.tag = "floor";
+            //c.goChunk.tag = "floor";
             c.goChunk.transform.parent = this.transform;
             chunkDict.TryAdd(c.goChunk.name, c);
         }
