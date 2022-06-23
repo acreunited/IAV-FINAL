@@ -13,10 +13,12 @@ public class Mic : MonoBehaviour {
     public Material materialSheep;
     public Material materialWolf;
     public Camera cam;
+    bool canCreate;
     enum Animals { SHEEP, WOLF };
 
 
     void Start() {
+        canCreate = true;
         audioSource = GetComponent<AudioSource>();
         ///currentPlayer = player2;
         if (useMicrophone) {
@@ -44,7 +46,8 @@ public class Mic : MonoBehaviour {
     void Update() {
         float energy = AudioAnalysis.MeanEnergy(audioSource);
 
-        if (AudioAnalysis.ConvertToDB(energy) > 40) {
+        if (AudioAnalysis.ConvertToDB(energy) > 40 && canCreate) {
+            canCreate = false;
             float peakFrequency = AudioAnalysis.ComputeSpectrumPeak(audioSource, true);
             // Debug.Log(peakFrequency);
             float concentration = AudioAnalysis.ConcentrationAroundPeak(peakFrequency);
@@ -57,6 +60,7 @@ public class Mic : MonoBehaviour {
             else if (concentration < 4.5f) {
                 createAnimal(Animals.WOLF);
             }
+            this.StartCoroutine(TimeToCreate());
 
         }
 
@@ -102,7 +106,13 @@ public class Mic : MonoBehaviour {
         }
     }
 
-   
+    IEnumerator TimeToCreate() {
+        yield return new WaitForSeconds(1);
+        canCreate = true;
+
+    }
+
+
 }
 
 
