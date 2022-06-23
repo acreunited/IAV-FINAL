@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - floor
-  - canRemove
+  - Sheep
+  - Wolf
   layers:
   - Default
   - TransparentFX
