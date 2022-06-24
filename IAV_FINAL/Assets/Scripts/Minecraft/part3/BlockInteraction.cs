@@ -9,6 +9,13 @@ public class BlockInteraction : MonoBehaviour
     InteractionType interactionType;
 
     // Update is called once per frame
+
+    private void Start()
+    {
+        type = new Block.BlockType[] { Block.BlockType.STONE, Block.BlockType.DIRT, Block.BlockType.GOLD };
+        blocks = new string[] { "STONE", "DIRT", "GOLD" };
+        blockType.text = blocks[pointer];
+    }
     void Update()
     {
         bool interaction = Input.GetMouseButtonDown(0) || Input.GetMouseButton(1);
