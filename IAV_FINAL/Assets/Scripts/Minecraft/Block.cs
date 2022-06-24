@@ -5,7 +5,7 @@ using UnityEngine;
 public class Block {
 
     enum Cubeside { BOTTOM, TOP, LEFT, RIGHT, FRONT, BACK };
-    public enum BlockType { GRASS, DIRT, STONE, AIR };
+    public enum BlockType { GRASS, DIRT, STONE, AIR, GOLD };
     Material material;
     BlockType bType;
     bool remove;

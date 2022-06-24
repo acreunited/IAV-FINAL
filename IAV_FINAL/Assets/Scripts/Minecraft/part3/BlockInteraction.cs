@@ -7,6 +7,9 @@ public class BlockInteraction : MonoBehaviour
     public Camera cam;
     enum InteractionType { DESTROY, BUILD };
     InteractionType interactionType;
+    //public Text blockType;
+    Block.BlockType[] type;
+    string[] blocks;
 
     // Update is called once per frame
 
@@ -14,7 +17,7 @@ public class BlockInteraction : MonoBehaviour
     {
         type = new Block.BlockType[] { Block.BlockType.STONE, Block.BlockType.DIRT, Block.BlockType.GOLD };
         blocks = new string[] { "STONE", "DIRT", "GOLD" };
-        blockType.text = blocks[pointer];
+       //s blockType.text = blocks[pointer];
     }
     void Update()
     {

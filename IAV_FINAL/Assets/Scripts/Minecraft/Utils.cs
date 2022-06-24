@@ -5,7 +5,7 @@ using UnityEngine;
 public class Utils
 {
     //ajustar este smooth ou criar outro para a pedra
-    static float smooth = 0.0002f;
+    static float smooth = 0.00002f;
     static float smooth3D = 10f * smooth;
     static int maxHeight = 150;
     static int octaves = 6;

@@ -11,7 +11,7 @@ public class BlockInteraction_v2 : MonoBehaviour
 
     enum InteractionType { DESTROY,BUILD};
     InteractionType interactionType;
-    Block.BlockType []type;
+    Block.BlockType [] type;
     int pointer = 0;
     public Text blockType;
     string[] blocks;
