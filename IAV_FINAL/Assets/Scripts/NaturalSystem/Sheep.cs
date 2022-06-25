@@ -5,19 +5,19 @@ using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
 
-public class Wolf : Agent {
+public class Sheep : Agent {
 
     private int i = 0;
     // bool targetRoom;
 
-   /* public override void OnEpisodeBegin() {
-        // targetRoom = false;
-        transform.localPosition = new Vector3(Random.Range(-13f, 13f), 0, Random.Range(-12f, 12f));
-        targetTransform.localPosition = new Vector3(Random.Range(-13f, 13f), 0, Random.Range(-12f, 12f));
-        targetTransform2.localPosition = new Vector3(Random.Range(-13f, 13f), 0, Random.Range(-12f, 12f));
-        targetTransform3.localPosition = new Vector3(Random.Range(-13f, 13f), 0, Random.Range(-12f, 12f));
-        targetTransform4.localPosition = new Vector3(Random.Range(-13f, 13f), 0, Random.Range(-12f, 12f));
-    }*/
+    /* public override void OnEpisodeBegin() {
+         // targetRoom = false;
+         transform.localPosition = new Vector3(Random.Range(-13f, 13f), 0, Random.Range(-12f, 12f));
+         targetTransform.localPosition = new Vector3(Random.Range(-13f, 13f), 0, Random.Range(-12f, 12f));
+         targetTransform2.localPosition = new Vector3(Random.Range(-13f, 13f), 0, Random.Range(-12f, 12f));
+         targetTransform3.localPosition = new Vector3(Random.Range(-13f, 13f), 0, Random.Range(-12f, 12f));
+         targetTransform4.localPosition = new Vector3(Random.Range(-13f, 13f), 0, Random.Range(-12f, 12f));
+     }*/
 
 
     public override void OnActionReceived(ActionBuffers actions) {
@@ -39,12 +39,11 @@ public class Wolf : Agent {
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.CompareTag("Sheep")) {
+        if (other.gameObject.CompareTag("Food")) {
             Destroy(other.gameObject);
             AddReward(1f);
-            
         }
-        
+
         EndEpisode();
     }
 

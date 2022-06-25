@@ -2,48 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnWolfs : MonoBehaviour
-{
+public class SpawnWolfs : MonoBehaviour {
 
     public Transform player;
-    public Material materialWolf;
-    private int waitTime = 5;
+    //public Material materialWolf;
+    private int waitTime = 20;
     private bool canSpawn;
+    public GameObject goWolf;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         canSpawn = true;
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         if (canSpawn) {
             canSpawn = false;
             Spawn();
         }
-       
-        
+
+
     }
 
     private void Spawn() {
         this.StartCoroutine(Wait());
-        GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        //GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         //cube.transform.position = new Vector3(blockx, blocky, blockz);
-     
-        cube.transform.position = new Vector3(player.position.x + Random.Range(-30, 30), player.position.y, player.position.z + Random.Range(-30, 30));
-        cube.transform.parent = this.transform;
-        cube.tag = "Wolf";
-        cube.AddComponent<Rigidbody>();
-        cube.GetComponent<MeshRenderer>().material = materialWolf;
-        cube.AddComponent<Wolf>();
+        GameObject wolf = Instantiate(goWolf);
 
-        
+        // cube.AddComponent<Rigidbody>();
+
+        wolf.transform.position = new Vector3(player.position.x + Random.Range(-20, 20), player.position.y+5, player.position.z + Random.Range(-20, 20));
+        wolf.transform.parent = this.transform;
+        wolf.tag = "Wolf";
+        //wolf.GetComponent<MeshRenderer>().material = materialWolf;
+
+
+
     }
 
     IEnumerator Wait() {
-        yield return new WaitForSeconds( waitTime );
+        yield return new WaitForSeconds(waitTime);
         canSpawn = true;
 
     }

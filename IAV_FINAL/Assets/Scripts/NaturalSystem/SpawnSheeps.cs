@@ -5,9 +5,10 @@ using UnityEngine;
 public class SpawnSheeps : MonoBehaviour {
 
     public Transform player;
-    public Material materialSheep;
-    private int waitTime = 5;
+    //public Material materialSheep;
+    private int waitTime = 20;
     private bool canSpawn;
+    public GameObject goSheep;
 
     // Start is called before the first frame update
     void Start() {
@@ -26,15 +27,13 @@ public class SpawnSheeps : MonoBehaviour {
 
     private void Spawn() {
         this.StartCoroutine(Wait());
-        GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        //cube.transform.position = new Vector3(blockx, blocky, blockz);
 
-        cube.transform.position = new Vector3(player.position.x + Random.Range(-15, 15), player.position.y, player.position.z + Random.Range(-15, 15));
-        cube.transform.parent = this.transform;
-        cube.tag = "Sheep";
-        cube.AddComponent<Rigidbody>();
-        cube.GetComponent<MeshRenderer>().material = materialSheep;
-        
+        GameObject sheep = Instantiate(goSheep);
+        sheep.transform.position = new Vector3(player.position.x + Random.Range(-10, 10), player.position.y+5, player.position.z + Random.Range(-10, 10));
+        sheep.transform.parent = this.transform;
+        sheep.tag = "Sheep";
+
+
     }
 
     IEnumerator Wait() {
