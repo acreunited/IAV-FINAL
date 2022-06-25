@@ -6,13 +6,17 @@ public class SpawnSheeps : MonoBehaviour {
 
     public Transform player;
     //public Material materialSheep;
-    private int waitTime = 20;
+    private int waitSpawnTime = 20;
+    private int waitDeleteDistanceTime = 10;
     private bool canSpawn;
     public GameObject goSheep;
+    List<GameObject> allSheeps;
+    private float distDestroy = 500f;
 
     // Start is called before the first frame update
     void Start() {
         canSpawn = true;
+        allSheeps = new List<GameObject>();
     }
 
     // Update is called once per frame
@@ -22,6 +26,7 @@ public class SpawnSheeps : MonoBehaviour {
             Spawn();
         }
 
+        this.StartCoroutine( checkDist() );
 
     }
 
@@ -33,11 +38,42 @@ public class SpawnSheeps : MonoBehaviour {
         sheep.transform.parent = this.transform;
         sheep.tag = "Sheep";
 
+        allSheeps.Add(sheep);
 
     }
 
+    private void deleteIfDist() {
+
+        GameObject[] arrSheeps = allSheeps.ToArray();
+        List<GameObject> updateSheeps = new List<GameObject>();
+
+        for (int i = 0; i < arrSheeps.Length; i++) {
+            if (arrSheeps[i]!=null) {
+                float dist = Vector3.Distance(player.position, arrSheeps[i].transform.position);
+                if (dist > distDestroy) {
+                    Destroy(arrSheeps[i]);
+                    arrSheeps[i] = null;
+                }
+                else {
+                    updateSheeps.Add(arrSheeps[i]);
+                }
+            }
+            
+        }
+        setAllSheeps(updateSheeps);
+    }
+
+    private void setAllSheeps(List<GameObject> allSheeps) {
+        this.allSheeps = allSheeps;
+    }
+
+    IEnumerator checkDist() {
+        yield return new WaitForSeconds(waitDeleteDistanceTime);
+        deleteIfDist();
+    }
+
     IEnumerator Wait() {
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(waitSpawnTime);
         canSpawn = true;
 
     }
