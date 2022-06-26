@@ -8,28 +8,19 @@ using Unity.MLAgents.Actuators;
 public class Wolf : Agent {
 
     private int i = 0;
-    // bool targetRoom;
-
-   /* public override void OnEpisodeBegin() {
-        // targetRoom = false;
-        transform.localPosition = new Vector3(Random.Range(-13f, 13f), 0, Random.Range(-12f, 12f));
-        targetTransform.localPosition = new Vector3(Random.Range(-13f, 13f), 0, Random.Range(-12f, 12f));
-        targetTransform2.localPosition = new Vector3(Random.Range(-13f, 13f), 0, Random.Range(-12f, 12f));
-        targetTransform3.localPosition = new Vector3(Random.Range(-13f, 13f), 0, Random.Range(-12f, 12f));
-        targetTransform4.localPosition = new Vector3(Random.Range(-13f, 13f), 0, Random.Range(-12f, 12f));
-    }*/
 
 
     public override void OnActionReceived(ActionBuffers actions) {
 
-        float moveSpeed = 25f;
-        float rotateSpeed = 250f;
+        float moveSpeed = 30f;
+        float rotateSpeed = 300f;
         float move = actions.ContinuousActions[0];
         float rotate = actions.ContinuousActions[1];
         transform.Rotate(new Vector3(0, rotate * Time.fixedDeltaTime * rotateSpeed, 0));
         transform.localPosition += transform.forward * move * Time.fixedDeltaTime * moveSpeed;
 
         AddReward(-0.0001f);
+
 
     }
     public override void Heuristic(in ActionBuffers actionsOut) {
@@ -42,9 +33,12 @@ public class Wolf : Agent {
         if (other.gameObject.CompareTag("Sheep")) {
             Destroy(other.gameObject);
             AddReward(1f);
-            
         }
-        
+        if (other.gameObject.CompareTag("Wall")) {
+            AddReward(-1f);
+        }
+      
+
         EndEpisode();
     }
 

@@ -54,6 +54,7 @@ public class BlockInteraction : MonoBehaviour
                     else if (interactionType == InteractionType.BUILD) {
                         c.chunkdata[blockx, blocky, blockz].SetType(Block.BlockType.STONE);
                         c.chunkdata[blockx, blocky, blockz].setCanRemove(true);
+                        c.goChunk.tag = "Wall";
                     }
                 }
 

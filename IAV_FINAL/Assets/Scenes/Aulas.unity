@@ -664,7 +664,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 01d4f03226b318643aa4e4607c6eb5d3, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: ecc87a712395a9f48874a1b8d29f9d91, type: 3}
   m_InferenceDevice: 2
   m_BehaviorType: 0
   m_BehaviorName: Sheeps
@@ -687,13 +687,13 @@ MonoBehaviour:
   m_SensorName: RayPerceptionSensor
   m_DetectableTags:
   - Food
-  m_RaysPerDirection: 7
-  m_MaxRayDegrees: 80
-  m_SphereCastRadius: 0.4
+  m_RaysPerDirection: 3
+  m_MaxRayDegrees: 70
+  m_SphereCastRadius: 0.5
   m_RayLength: 20
   m_RayLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 51
   m_ObservationStacks: 1
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
@@ -1307,7 +1307,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: bd25b10961f3f834689eb2d2de808019, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: da1c92e66d35aea4aa6d659f988e9599, type: 3}
   m_InferenceDevice: 2
   m_BehaviorType: 0
   m_BehaviorName: Wolfs
@@ -1330,13 +1330,13 @@ MonoBehaviour:
   m_SensorName: RayPerceptionSensor
   m_DetectableTags:
   - Sheep
-  m_RaysPerDirection: 7
-  m_MaxRayDegrees: 80
-  m_SphereCastRadius: 0.4
+  m_RaysPerDirection: 3
+  m_MaxRayDegrees: 70
+  m_SphereCastRadius: 0.5
   m_RayLength: 20
   m_RayLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 51
   m_ObservationStacks: 1
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}

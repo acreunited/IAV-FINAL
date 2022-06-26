@@ -44,7 +44,7 @@ public class Mic : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        float energy = AudioAnalysis.MeanEnergy(audioSource);
+       /*float energy = AudioAnalysis.MeanEnergy(audioSource);
 
         if (AudioAnalysis.ConvertToDB(energy) > 40 && canCreate) {
             canCreate = false;
@@ -62,7 +62,7 @@ public class Mic : MonoBehaviour {
             }
             this.StartCoroutine(TimeToCreate());
 
-        }
+        }*/
 
     }
 
