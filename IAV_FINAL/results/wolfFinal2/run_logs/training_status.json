@@ -1,0 +1,47 @@
+{
+    "Wolfs": {
+        "checkpoints": [
+            {
+                "steps": 108511,
+                "file_path": "results\\wolfFinal2\\Wolfs\\Wolfs-108511.onnx",
+                "reward": 0.0009281832242704017,
+                "creation_time": 1656255682.8998044,
+                "auxillary_file_paths": [
+                    "results\\wolfFinal2\\Wolfs\\Wolfs-108511.pt"
+                ]
+            },
+            {
+                "steps": 205960,
+                "file_path": "results\\wolfFinal2\\Wolfs\\Wolfs-205960.onnx",
+                "reward": 0.000726999014083266,
+                "creation_time": 1656256437.7229385,
+                "auxillary_file_paths": [
+                    "results\\wolfFinal2\\Wolfs\\Wolfs-205960.pt"
+                ]
+            },
+            {
+                "steps": 304358,
+                "file_path": "results\\wolfFinal2\\Wolfs\\Wolfs-304358.onnx",
+                "reward": 0.0009381309072830427,
+                "creation_time": 1656257202.5821652,
+                "auxillary_file_paths": [
+                    "results\\wolfFinal2\\Wolfs\\Wolfs-304358.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 304358,
+            "file_path": "results\\wolfFinal2\\Wolfs.onnx",
+            "reward": 0.0009381309072830427,
+            "creation_time": 1656257202.5821652,
+            "auxillary_file_paths": [
+                "results\\wolfFinal2\\Wolfs\\Wolfs-304358.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}

@@ -6,7 +6,7 @@ public class SpawnWolfs : MonoBehaviour {
 
     public Transform player;
     //public Material materialWolf;
-    private int waitTime = 20;
+    private int waitTime = 50;
     private bool canSpawn;
     public GameObject goWolf;
     List<GameObject> allWolfs;
@@ -35,8 +35,8 @@ public class SpawnWolfs : MonoBehaviour {
         //GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         //cube.transform.position = new Vector3(blockx, blocky, blockz);
         GameObject wolf = Instantiate(goWolf);
-
-        wolf.transform.position = new Vector3(player.position.x + Random.Range(-20, 20), player.position.y+5, player.position.z + Random.Range(-20, 20));
+        wolf.SetActive(true);
+        wolf.transform.position = new Vector3(player.position.x + Random.Range(-10, 10), player.position.y+5, player.position.z + Random.Range(-10, 10));
         wolf.transform.parent = this.transform;
         wolf.tag = "Wolf";
         //wolf.GetComponent<MeshRenderer>().material = materialWolf;

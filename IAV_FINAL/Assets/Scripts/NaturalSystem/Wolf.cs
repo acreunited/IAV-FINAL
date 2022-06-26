@@ -9,6 +9,9 @@ public class Wolf : Agent {
 
     private int i = 0;
 
+    public override void OnEpisodeBegin() {
+        //transform.localPosition = new Vector3(Random.Range(-13f, 13f), 0, Random.Range(-12f, 12f));
+    }
 
     public override void OnActionReceived(ActionBuffers actions) {
 
@@ -37,7 +40,10 @@ public class Wolf : Agent {
         if (other.gameObject.CompareTag("Wall")) {
             AddReward(-1f);
         }
-      
+        if (other.gameObject.CompareTag("Player")) {
+            AddReward(-1f);
+        }
+
 
         EndEpisode();
     }
