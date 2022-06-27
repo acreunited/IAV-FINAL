@@ -8,6 +8,8 @@ using Unity.MLAgents.Actuators;
 public class Wolf : Agent {
 
     private int i = 0;
+    public GameObject ui;
+    private UI ui_s;
 
     public override void OnEpisodeBegin() {
         //transform.localPosition = new Vector3(Random.Range(-13f, 13f), 0, Random.Range(-12f, 12f));
@@ -54,6 +56,11 @@ public class Wolf : Agent {
         if (i++ % 5 == 0) {
             RequestDecision();
         }
+    }
+
+    private void Start() {
+        ui_s = ui.GetComponent<UI>();
+        ui_s.RegisterHP(this.gameObject);
     }
 
 

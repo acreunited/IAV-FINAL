@@ -8,6 +8,8 @@ using Unity.MLAgents.Actuators;
 public class Sheep : Agent {
 
     private int i = 0;
+    public GameObject ui;
+    private UI ui_s;
 
     public override void OnActionReceived(ActionBuffers actions) {
 
@@ -49,6 +51,9 @@ public class Sheep : Agent {
         }
     }
 
-
+    private void Start() {
+        ui_s = ui.GetComponent<UI>();
+        ui_s.RegisterHP(this.gameObject);
+    }
 
 }

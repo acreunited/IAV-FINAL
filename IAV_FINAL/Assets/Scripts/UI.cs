@@ -8,11 +8,16 @@ public class UI : MonoBehaviour
     private float hpBarWitdh;
     private float maxHp=100;
     private float hp;
+
+    public HPBar sheepWolf;
+
+    private Dictionary<GameObject, HPBar> sheepWolfHp;
     // Start is called before the first frame update
     void Start()
     {
         hpBarWitdh = hpBar.sizeDelta.x;
         hp = maxHp;
+        sheepWolfHp = new Dictionary<GameObject, HPBar>();
     }
 
     // Update is called once per frame
@@ -36,5 +41,15 @@ public class UI : MonoBehaviour
         size.x = hp / maxHp * hpBarWitdh;
         hpBar.sizeDelta = size;
 
+    }
+
+    public void RegisterHP(GameObject gameObject)
+    {
+        sheepWolfHp[gameObject] = Instantiate(sheepWolf, gameObject.transform);
+    }
+
+    public void SetHp(GameObject gameObject,float hp,float maxHp)
+    {
+        sheepWolfHp[gameObject].SetHp(hp, maxHp);
     }
 }

@@ -629,6 +629,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
+  ui: {fileID: 1762856769}
 --- !u!65 &1261438932
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1168,6 +1169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpBar: {fileID: 1243964007}
+  sheepWolf: {fileID: 2719000095618749036, guid: f011dd41b04961d4bb0fa1a2df57aba0, type: 3}
 --- !u!114 &1762856771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1290,6 +1292,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
+  ui: {fileID: 1762856769}
 --- !u!114 &1902584608
 MonoBehaviour:
   m_ObjectHideFlags: 0
