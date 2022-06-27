@@ -10,6 +10,9 @@ public class Sheep : Agent {
     private int i = 0;
     public GameObject ui;
     private UI ui_s;
+    private float thisHP;
+    private float loseHPPerTime = 0.05f;
+    private float gainHPEat = 50f;
 
     public override void OnActionReceived(ActionBuffers actions) {
 
@@ -33,6 +36,8 @@ public class Sheep : Agent {
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Food")) {
             Destroy(other.gameObject);
+            this.setThisHP(this.getHP() + gainHPEat);
+            
             AddReward(1f);
         }
         if (other.gameObject.CompareTag("Wall")) {
@@ -54,6 +59,28 @@ public class Sheep : Agent {
     private void Start() {
         ui_s = ui.GetComponent<UI>();
         ui_s.RegisterHP(this.gameObject);
+
+        thisHP = 100f;
+    }
+    private void Update() {
+
+        if (this.getHP() <= 0f) {
+            Destroy(this.gameObject);
+        }
+        else {
+            this.setThisHP(this.getHP() - loseHPPerTime);
+          
+        }
+        
+       
+    }
+
+    private float getHP() {
+        return this.thisHP;
+    }
+    private void setThisHP(float thisHP) {
+        this.thisHP = (thisHP < 100f) ? thisHP : 100f;
+        ui_s.SetHp(this.gameObject, this.getHP(), 100f);
     }
 
 }

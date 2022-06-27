@@ -41,6 +41,7 @@ public class UI : MonoBehaviour
         size.x = hp / maxHp * hpBarWitdh;
         hpBar.sizeDelta = size;
 
+        
     }
 
     public void RegisterHP(GameObject gameObject)
@@ -52,4 +53,6 @@ public class UI : MonoBehaviour
     {
         sheepWolfHp[gameObject].SetHp(hp, maxHp);
     }
+
+    
 }
