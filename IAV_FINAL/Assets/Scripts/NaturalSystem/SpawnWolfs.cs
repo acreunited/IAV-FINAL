@@ -47,20 +47,26 @@ public class SpawnWolfs : MonoBehaviour {
 
     private void deleteIfDist() {
 
-        GameObject[] arrWolfs = allWolfs.ToArray();
-        List<GameObject> updateWolfs = new List<GameObject>();
+        if (allWolfs.ToArray().Length > 0) {
+            GameObject[] arrWolfs = allWolfs.ToArray();
+            List<GameObject> updateWolfs = new List<GameObject>();
 
-        for (int i = 0; i < arrWolfs.Length; i++) {
-            float dist = Vector3.Distance(player.position, arrWolfs[i].transform.position);
-            if (dist > distDestroy) {
-                Destroy(arrWolfs[i]);
-                arrWolfs[i] = null;
+            for (int i = 0; i < arrWolfs.Length; i++) {
+                if (arrWolfs[i] != null) {
+                    float dist = Vector3.Distance(player.position, arrWolfs[i].transform.position);
+                    if (dist > distDestroy) {
+                        Destroy(arrWolfs[i]);
+                        arrWolfs[i] = null;
+                    }
+                    else {
+                        updateWolfs.Add(arrWolfs[i]);
+                    }
+                }
+                
             }
-            else {
-                updateWolfs.Add(arrWolfs[i]);
-            }
+            setAllWolfs(updateWolfs);
         }
-        setAllWolfs(updateWolfs);
+        
     }
 
     private void setAllWolfs(List<GameObject> allWolfs) {
@@ -70,6 +76,7 @@ public class SpawnWolfs : MonoBehaviour {
     IEnumerator checkDist() {
         yield return new WaitForSeconds(waitDeleteDistanceTime);
         deleteIfDist();
+ 
     }
 
     IEnumerator Wait() {

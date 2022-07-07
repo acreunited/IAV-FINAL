@@ -13,6 +13,10 @@ public class Wolf : Agent {
     private float thisHP;
     private float loseHPPerTime = 0.05f;
     private float gainHPEat = 50f;
+    private bool canDelete;
+
+    [SerializeField] private AudioSource dieSheepSound;
+    [SerializeField] private AudioSource dieWolfSound;
 
     public override void OnEpisodeBegin() {
         //transform.localPosition = new Vector3(Random.Range(-13f, 13f), 0, Random.Range(-12f, 12f));
@@ -42,6 +46,7 @@ public class Wolf : Agent {
             Destroy(other.gameObject);
             this.setThisHP(this.getHP() + gainHPEat);
             AddReward(1f);
+            dieSheepSound.Play();
         }
         if (other.gameObject.CompareTag("Wall")) {
             AddReward(-1f);
@@ -66,12 +71,16 @@ public class Wolf : Agent {
         ui_s = ui.GetComponent<UI>();
         ui_s.RegisterHP(this.gameObject);
         thisHP = 100f;
+        canDelete = true;
     }
 
     private void Update() {
-
         if (this.getHP() <= 0f) {
-            Destroy(this.gameObject);
+            if (canDelete) {
+                canDelete = false;
+                this.StartCoroutine(WaitDestroy());
+            }
+           
         }
         else {
             this.setThisHP(this.getHP() - loseHPPerTime);
@@ -85,6 +94,13 @@ public class Wolf : Agent {
     private void setThisHP(float thisHP) {
         this.thisHP = (thisHP < 100f) ? thisHP : 100f;
         ui_s.SetHp(this.gameObject, this.getHP(), 100f);
+    }
+
+    IEnumerator WaitDestroy() {
+        dieWolfSound.Play();
+        yield return new WaitForSeconds(0.5f);
+        Destroy(this.gameObject);
+        canDelete = true;
     }
 
 }

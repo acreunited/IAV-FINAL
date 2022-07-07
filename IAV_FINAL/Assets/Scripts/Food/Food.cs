@@ -9,10 +9,13 @@ public class Food : MonoBehaviour
     public Camera cam;
     bool canCreate;
 
+    [SerializeField] private AudioSource foodSound;
+
     // Start is called before the first frame update
     void Start()
     {
         canCreate = true;
+
     }
 
     // Update is called once per frame
@@ -38,6 +41,7 @@ public class Food : MonoBehaviour
                     cube.transform.parent = this.transform;
                     cube.tag = "Food";
                     cube.GetComponent<MeshRenderer>().material = materialFood;
+                    foodSound.Play();
                 }
             }
             this.StartCoroutine(TimeToCreate());

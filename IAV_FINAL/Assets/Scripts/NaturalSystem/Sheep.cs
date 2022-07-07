@@ -13,6 +13,11 @@ public class Sheep : Agent {
     private float thisHP;
     private float loseHPPerTime = 0.05f;
     private float gainHPEat = 50f;
+    private bool canDelete;
+
+    [SerializeField] private AudioSource dieSheepSound;
+    [SerializeField] private AudioSource eatSound;
+
 
     public override void OnActionReceived(ActionBuffers actions) {
 
@@ -35,6 +40,7 @@ public class Sheep : Agent {
 
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Food")) {
+            eatSound.Play();
             Destroy(other.gameObject);
             this.setThisHP(this.getHP() + gainHPEat);
             
@@ -61,15 +67,21 @@ public class Sheep : Agent {
         ui_s.RegisterHP(this.gameObject);
 
         thisHP = 100f;
+        canDelete = true;
     }
     private void Update() {
 
         if (this.getHP() <= 0f) {
-            Destroy(this.gameObject);
+
+            if (canDelete) {
+                canDelete = false;
+                this.StartCoroutine(WaitDestroy());
+            }
+
         }
         else {
             this.setThisHP(this.getHP() - loseHPPerTime);
-          
+            
         }
         
        
@@ -81,6 +93,13 @@ public class Sheep : Agent {
     private void setThisHP(float thisHP) {
         this.thisHP = (thisHP < 100f) ? thisHP : 100f;
         ui_s.SetHp(this.gameObject, this.getHP(), 100f);
+    }
+
+    IEnumerator WaitDestroy() {
+        dieSheepSound.Play();
+        yield return new WaitForSeconds(0.5f);
+        Destroy(this.gameObject);
+        canDelete = true;
     }
 
 }

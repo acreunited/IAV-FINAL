@@ -52,6 +52,7 @@ public class UI : MonoBehaviour
     public void SetHp(GameObject gameObject,float hp,float maxHp)
     {
         sheepWolfHp[gameObject].SetHp(hp, maxHp);
+        //hpBar.GetComponentInChildren<Image>()
     }
 
     
