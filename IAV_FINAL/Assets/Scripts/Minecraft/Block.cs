@@ -17,7 +17,8 @@ public class Block {
     static Vector2 GrassSide_LBC = new Vector2(3f, 15f) / 16;
     static Vector2 GrassTop_LBC = new Vector2(2f, 6f) / 16;
     static Vector2 Dirt_LBC = new Vector2(2f, 15f) / 16;
-    static Vector2 Stone_LBC = new Vector2(0f, 14f) / 16;
+    //static Vector2 Stone_LBC = new Vector2(0f, 14f) / 16;
+    static Vector2 Stone_LBC = new Vector2(3f, 14f) / 16;
 
     Vector2[,] blockUVs = {
         {GrassTop_LBC, GrassTop_LBC+new Vector2(1f, 0f)/16,

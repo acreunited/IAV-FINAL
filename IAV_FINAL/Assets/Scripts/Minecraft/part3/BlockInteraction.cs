@@ -10,6 +10,7 @@ public class BlockInteraction : MonoBehaviour
     //public Text blockType;
     Block.BlockType[] type;
     string[] blocks;
+    private bool canCreate;
 
     // Update is called once per frame
 
@@ -17,7 +18,8 @@ public class BlockInteraction : MonoBehaviour
     {
         type = new Block.BlockType[] { Block.BlockType.STONE, Block.BlockType.DIRT, Block.BlockType.GOLD };
         blocks = new string[] { "STONE", "DIRT", "GOLD" };
-       //s blockType.text = blocks[pointer];
+        //s blockType.text = blocks[pointer];
+        canCreate = true;
     }
     void Update()
     {
@@ -51,10 +53,14 @@ public class BlockInteraction : MonoBehaviour
                     if (interactionType == InteractionType.DESTROY && c.chunkdata[blockx, blocky, blockz].canRemove() ) {
                         c.chunkdata[blockx, blocky, blockz].SetType(Block.BlockType.AIR);
                     }
-                    else if (interactionType == InteractionType.BUILD) {
+                    else if (interactionType == InteractionType.BUILD && canCreate) {
+                        
+                        canCreate = false;
                         c.chunkdata[blockx, blocky, blockz].SetType(Block.BlockType.STONE);
                         c.chunkdata[blockx, blocky, blockz].setCanRemove(true);
                         c.goChunk.tag = "Wall";
+                        this.StartCoroutine(TimeToCreate());                       
+                       
                     }
                 }
 
@@ -91,5 +97,10 @@ public class BlockInteraction : MonoBehaviour
             
         }
         
+    }
+
+    IEnumerator TimeToCreate() {
+        yield return new WaitForSeconds(1);
+        canCreate = true;
     }
 }
