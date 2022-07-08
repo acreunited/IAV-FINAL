@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnWolfs : MonoBehaviour {
 
@@ -12,6 +13,7 @@ public class SpawnWolfs : MonoBehaviour {
     List<GameObject> allWolfs;
     private float distDestroy = 500f;
     private int waitDeleteDistanceTime = 10;
+    public Text wolfs;
 
     // Start is called before the first frame update
     void Start() {
@@ -27,6 +29,7 @@ public class SpawnWolfs : MonoBehaviour {
         }
 
         this.StartCoroutine(checkDist());
+        wolfs.text = "" + allWolfs.Count;
 
     }
 

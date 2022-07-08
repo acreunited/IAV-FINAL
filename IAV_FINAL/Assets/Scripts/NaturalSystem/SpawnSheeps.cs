@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnSheeps : MonoBehaviour {
 
@@ -12,6 +13,8 @@ public class SpawnSheeps : MonoBehaviour {
     public GameObject goSheep;
     List<GameObject> allSheeps;
     private float distDestroy = 500f;
+    public Text sheeps;
+
 
     // Start is called before the first frame update
     void Start() {
@@ -27,6 +30,7 @@ public class SpawnSheeps : MonoBehaviour {
         }
 
         this.StartCoroutine( checkDist() );
+        sheeps.text = "" + allSheeps.Count;
 
     }
 
