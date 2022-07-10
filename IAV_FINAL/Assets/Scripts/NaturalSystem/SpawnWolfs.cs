@@ -43,7 +43,7 @@ public class SpawnWolfs : MonoBehaviour {
         for (int i = 0; i < n; i++) {
             GameObject wolf = Instantiate(goWolf);
             wolf.SetActive(true);
-            wolf.transform.position = new Vector3(player.position.x + Random.Range(-30, 30), player.position.y + 20, player.position.z + Random.Range(-30, 30));
+            wolf.transform.position = new Vector3(player.position.x + Random.Range(-25, 25), player.position.y+5, player.position.z + Random.Range(-25, 25));
            
             wolf.transform.parent = this.transform;
             wolf.tag = "Wolf";

@@ -11,11 +11,11 @@ public class Sheep : Agent {
     public GameObject ui;
     private UI ui_s;
     private float thisHP;
-    private float loseHPPerTime = 0.01f;
+    private float loseHPPerTime = 0.02f;
     private float gainHPEat = 50f;
     private bool canDelete;
-
     private int timeAlive;
+    private int timeReproduce = 60; //segundos
 
     [SerializeField] private AudioSource dieSheepSound;
     [SerializeField] private AudioSource eatSound;
@@ -64,6 +64,12 @@ public class Sheep : Agent {
         if (i++ % 5 == 0) {
             RequestDecision();
         }
+
+        timeAlive++;
+        if (timeAlive >= 50 * timeReproduce) {
+            timeAlive = 0;
+            duplicate();
+        }
     }
 
     private void Start() {
@@ -75,8 +81,6 @@ public class Sheep : Agent {
         timeAlive = 0;
     }
     private void Update() {
-
-        timeAlive++;
 
         if (this.getHP() <= 0f) {
 
@@ -91,22 +95,14 @@ public class Sheep : Agent {
             
         }
 
-        if (timeAlive >= 500) {
-            timeAlive = 0;
-            duplicate();
-        }
         
        
     }
 
     private void duplicate() {
         GameObject sheep = Instantiate(this.gameObject);
-        //sheep.SetActive(true);
         sheep.transform.position = new Vector3(this.transform.position.x + Random.Range(-5, 5), this.transform.position.y + 5, this.transform.position.z + Random.Range(-5, 5));
-        //sheep.transform.parent = this.transform;
-        sheep.tag = "Sheep";
-        //allSheeps.Add(sheep);
- 
+        sheep.tag = "Sheep"; 
         Helper.allSheeps.Add(sheep);
     }
 
