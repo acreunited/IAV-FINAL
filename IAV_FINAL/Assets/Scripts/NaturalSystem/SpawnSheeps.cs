@@ -7,7 +7,7 @@ public class SpawnSheeps : MonoBehaviour {
 
     public Transform player;
     //public Material materialSheep;
-    private int waitSpawnTime = 25;
+    private int waitSpawnTime = 100;
     private int waitDeleteDistanceTime = 10;
     private bool canSpawn;
     public GameObject goSheep;
@@ -20,13 +20,15 @@ public class SpawnSheeps : MonoBehaviour {
     void Start() {
         canSpawn = true;
         allSheeps = new List<GameObject>();
+
+       // Spawn(10);
     }
 
     // Update is called once per frame
     void Update() {
         if (canSpawn) {
             canSpawn = false;
-            Spawn();
+            Spawn(35);
         }
 
         this.StartCoroutine( checkDist() );
@@ -34,15 +36,19 @@ public class SpawnSheeps : MonoBehaviour {
 
     }
 
-    private void Spawn() {
-        this.StartCoroutine(Wait());
+    private void Spawn(int n) {
+        //this.StartCoroutine(Wait());
 
-        GameObject sheep = Instantiate(goSheep);
-        sheep.SetActive(true);
-        sheep.transform.position = new Vector3(player.position.x + Random.Range(-10, 10), player.position.y+5, player.position.z + Random.Range(-10, 10));
-        sheep.transform.parent = this.transform;
-        sheep.tag = "Sheep";
-        allSheeps.Add(sheep);
+        for (int i = 0; i < n; i++) {
+            GameObject sheep = Instantiate(goSheep);
+            sheep.SetActive(true);
+            sheep.transform.position = new Vector3(player.position.x + Random.Range(-30, 30), player.position.y + 20, player.position.z + Random.Range(-30, 30));
+            sheep.transform.parent = this.transform;
+            sheep.tag = "Sheep";
+            allSheeps.Add(sheep);
+        }
+
+        
 
     }
 
@@ -78,7 +84,7 @@ public class SpawnSheeps : MonoBehaviour {
 
     IEnumerator Wait() {
         yield return new WaitForSeconds(waitSpawnTime);
-        canSpawn = true;
+        //canSpawn = true;
 
     }
 }

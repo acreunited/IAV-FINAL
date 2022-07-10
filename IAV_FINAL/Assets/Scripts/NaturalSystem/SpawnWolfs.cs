@@ -7,7 +7,7 @@ public class SpawnWolfs : MonoBehaviour {
 
     public Transform player;
     //public Material materialWolf;
-    private int waitTime = 50;
+    private int waitTime = 100;
     private bool canSpawn;
     public GameObject goWolf;
     List<GameObject> allWolfs;
@@ -19,32 +19,39 @@ public class SpawnWolfs : MonoBehaviour {
     void Start() {
         canSpawn = true;
         allWolfs = new List<GameObject>();
+
+       
     }
 
     // Update is called once per frame
     void Update() {
         if (canSpawn) {
             canSpawn = false;
-            Spawn();
+            Spawn(20);
         }
-
+        
         this.StartCoroutine(checkDist());
         wolfs.text = "" + allWolfs.Count;
 
     }
 
-    private void Spawn() {
-        this.StartCoroutine(Wait());
+    private void Spawn(int n) {
+        //this.StartCoroutine(Wait());
         //GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         //cube.transform.position = new Vector3(blockx, blocky, blockz);
-        GameObject wolf = Instantiate(goWolf);
-        wolf.SetActive(true);
-        wolf.transform.position = new Vector3(player.position.x + Random.Range(-10, 10), player.position.y+5, player.position.z + Random.Range(-10, 10));
-        wolf.transform.parent = this.transform;
-        wolf.tag = "Wolf";
-        //wolf.GetComponent<MeshRenderer>().material = materialWolf;
 
-        allWolfs.Add(wolf);
+        for (int i = 0; i < n; i++) {
+            GameObject wolf = Instantiate(goWolf);
+            wolf.SetActive(true);
+            wolf.transform.position = new Vector3(player.position.x + Random.Range(-30, 30), player.position.y + 20, player.position.z + Random.Range(-30, 30));
+           
+            wolf.transform.parent = this.transform;
+            wolf.tag = "Wolf";
+
+            allWolfs.Add(wolf);
+        }
+
+        
 
     }
 
@@ -84,7 +91,7 @@ public class SpawnWolfs : MonoBehaviour {
 
     IEnumerator Wait() {
         yield return new WaitForSeconds(waitTime);
-        canSpawn = true;
+       // canSpawn = true;
 
     }
 }

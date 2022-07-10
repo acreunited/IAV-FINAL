@@ -106,6 +106,7 @@ public class World : MonoBehaviour
     }
 
     // Start is called before the first frame update
+    
     void Start()
     {
         player.SetActive(false);
