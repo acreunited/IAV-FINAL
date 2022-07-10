@@ -10,7 +10,7 @@ public class SpawnWolfs : MonoBehaviour {
     private int waitTime = 100;
     private bool canSpawn;
     public GameObject goWolf;
-    List<GameObject> allWolfs;
+    //List<GameObject> allWolfs;
     private float distDestroy = 500f;
     private int waitDeleteDistanceTime = 10;
     public Text wolfs;
@@ -18,7 +18,7 @@ public class SpawnWolfs : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         canSpawn = true;
-        allWolfs = new List<GameObject>();
+       // allWolfs = new List<GameObject>();
 
        
     }
@@ -31,7 +31,7 @@ public class SpawnWolfs : MonoBehaviour {
         }
         
         this.StartCoroutine(checkDist());
-        wolfs.text = "" + allWolfs.Count;
+        wolfs.text = "" + Helper.allWolfs.Count;
 
     }
 
@@ -48,7 +48,7 @@ public class SpawnWolfs : MonoBehaviour {
             wolf.transform.parent = this.transform;
             wolf.tag = "Wolf";
 
-            allWolfs.Add(wolf);
+            Helper.allWolfs.Add(wolf);
         }
 
         
@@ -57,8 +57,8 @@ public class SpawnWolfs : MonoBehaviour {
 
     private void deleteIfDist() {
 
-        if (allWolfs.ToArray().Length > 0) {
-            GameObject[] arrWolfs = allWolfs.ToArray();
+        if (Helper.allWolfs.ToArray().Length > 0) {
+            GameObject[] arrWolfs = Helper.allWolfs.ToArray();
             List<GameObject> updateWolfs = new List<GameObject>();
 
             for (int i = 0; i < arrWolfs.Length; i++) {
@@ -80,7 +80,7 @@ public class SpawnWolfs : MonoBehaviour {
     }
 
     private void setAllWolfs(List<GameObject> allWolfs) {
-        this.allWolfs = allWolfs;
+        Helper.allWolfs = allWolfs;
     }
 
     IEnumerator checkDist() {

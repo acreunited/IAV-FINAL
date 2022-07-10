@@ -11,7 +11,7 @@ public class SpawnSheeps : MonoBehaviour {
     private int waitDeleteDistanceTime = 10;
     private bool canSpawn;
     public GameObject goSheep;
-    List<GameObject> allSheeps;
+    //List<GameObject> allSheeps;
     private float distDestroy = 500f;
     public Text sheeps;
 
@@ -19,7 +19,7 @@ public class SpawnSheeps : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         canSpawn = true;
-        allSheeps = new List<GameObject>();
+       // allSheeps = new List<GameObject>();
 
        // Spawn(10);
     }
@@ -29,14 +29,17 @@ public class SpawnSheeps : MonoBehaviour {
         if (canSpawn) {
             canSpawn = false;
             Spawn(35);
+            
         }
 
         this.StartCoroutine( checkDist() );
-        sheeps.text = "" + allSheeps.Count;
+        sheeps.text = "" + Helper.allSheeps.Count;
 
     }
 
-    private void Spawn(int n) {
+    
+
+    public void Spawn(int n) {
         //this.StartCoroutine(Wait());
 
         for (int i = 0; i < n; i++) {
@@ -45,16 +48,14 @@ public class SpawnSheeps : MonoBehaviour {
             sheep.transform.position = new Vector3(player.position.x + Random.Range(-30, 30), player.position.y + 20, player.position.z + Random.Range(-30, 30));
             sheep.transform.parent = this.transform;
             sheep.tag = "Sheep";
-            allSheeps.Add(sheep);
+            Helper.allSheeps.Add(sheep);
         }
-
-        
 
     }
 
     private void deleteIfDist() {
 
-        GameObject[] arrSheeps = allSheeps.ToArray();
+        GameObject[] arrSheeps = Helper.allSheeps.ToArray();
         List<GameObject> updateSheeps = new List<GameObject>();
 
         for (int i = 0; i < arrSheeps.Length; i++) {
@@ -74,7 +75,7 @@ public class SpawnSheeps : MonoBehaviour {
     }
 
     private void setAllSheeps(List<GameObject> allSheeps) {
-        this.allSheeps = allSheeps;
+        Helper.allSheeps = allSheeps;
     }
 
     IEnumerator checkDist() {
@@ -87,4 +88,6 @@ public class SpawnSheeps : MonoBehaviour {
         //canSpawn = true;
 
     }
+
+   
 }

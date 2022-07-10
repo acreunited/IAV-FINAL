@@ -17,8 +17,6 @@ public class HPBar : MonoBehaviour
     void Update()
     {
         transform.LookAt(Camera.main.transform);
-
-        
     }
 
     public void SetHp(float hp, float maxHp)

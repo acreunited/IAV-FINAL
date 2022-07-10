@@ -11,9 +11,10 @@ public class Wolf : Agent {
     public GameObject ui;
     private UI ui_s;
     private float thisHP;
-    private float loseHPPerTime = 0.05f;
+    private float loseHPPerTime = 0.01f;
     private float gainHPEat = 50f;
     private bool canDelete;
+    private int timeAlive;
 
     [SerializeField] private AudioSource dieSheepSound;
     [SerializeField] private AudioSource dieWolfSound;
@@ -72,9 +73,13 @@ public class Wolf : Agent {
         ui_s.RegisterHP(this.gameObject);
         thisHP = 100f;
         canDelete = true;
+        timeAlive = 0;
     }
 
     private void Update() {
+
+        timeAlive++;
+
         if (this.getHP() <= 0f) {
             if (canDelete) {
                 canDelete = false;
@@ -86,6 +91,23 @@ public class Wolf : Agent {
             this.setThisHP(this.getHP() - loseHPPerTime);
         }
 
+
+        if (timeAlive >= 500) {
+            timeAlive = 0;
+            duplicate();
+        }
+
+    }
+
+    private void duplicate() {
+        GameObject wolf = Instantiate(this.gameObject);
+        //sheep.SetActive(true);
+        wolf.transform.position = new Vector3(this.transform.position.x + Random.Range(-5, 5), this.transform.position.y + 5, this.transform.position.z + Random.Range(-5, 5));
+        //sheep.transform.parent = this.transform;
+        wolf.tag = "Wolf";
+        //allSheeps.Add(sheep);
+
+        Helper.allWolfs.Add(wolf);
     }
 
     private float getHP() {
