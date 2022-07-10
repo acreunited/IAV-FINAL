@@ -35,7 +35,6 @@ public class BlockInteraction_v2 : MonoBehaviour
         bool interaction = Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1);
         if (interaction)
         {
-            Debug.Log("ajaj");
             interactionType = Input.GetMouseButtonDown(0) ? InteractionType.DESTROY : InteractionType.BUILD;
             RaycastHit hit;
             if(Physics.Raycast(cam.transform.position,cam.transform.forward,out hit, 10))
@@ -60,13 +59,16 @@ public class BlockInteraction_v2 : MonoBehaviour
                 Chunk c;
                 if(World.chunkDict.TryGetValue(chunkName,out c))
                 {
-                    if (interactionType == InteractionType.DESTROY)
+                    if (interactionType == InteractionType.DESTROY && c.chunkdata[blockx, blocky, blockz].canRemove())
                     {
                         c.chunkdata[blockx, blocky, blockz].SetType(Block.BlockType.AIR);
+                        Debug.Log("can");
                     }
-                    else
+                    else if(interactionType == InteractionType.BUILD)
                     {
                         c.chunkdata[blockx, blocky, blockz].SetType(type[pointer]);
+                        c.chunkdata[blockx, blocky, blockz].setCanRemove(true);
+                        c.goChunk.tag = "Wall";
                     }
                     DestroyImmediate(c.goChunk.GetComponent<MeshFilter>());
                     DestroyImmediate(c.goChunk.GetComponent<MeshRenderer>());
