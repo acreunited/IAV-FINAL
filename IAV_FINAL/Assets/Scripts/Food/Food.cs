@@ -8,6 +8,7 @@ public class Food : MonoBehaviour
     public Material materialFood;
     public Camera cam;
     bool canCreate;
+    public GameObject food;
 
     [SerializeField] private AudioSource foodSound;
 
@@ -36,11 +37,11 @@ public class Food : MonoBehaviour
 
                 Chunk c;
                 if (World.chunkDict.TryGetValue(chunkName, out c)) {
-                    GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    cube.transform.position = new Vector3((int)(Mathf.Round(hitBlock.x)), (int)(Mathf.Round(hitBlock.y)), (int)(Mathf.Round(hitBlock.z)));
-                    cube.transform.parent = this.transform;
-                    cube.tag = "Food";
-                    cube.GetComponent<MeshRenderer>().material = materialFood;
+                    Instantiate(food);
+                    food.transform.position = new Vector3((int)(Mathf.Round(hitBlock.x)), (int)(Mathf.Round(hitBlock.y)), (int)(Mathf.Round(hitBlock.z)));
+                    food.transform.parent = this.transform;
+                    food.tag = "Food";
+                    //cube.GetComponent<MeshRenderer>().material = materialFood;
                     foodSound.Play();
                 }
             }
