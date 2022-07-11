@@ -37,10 +37,20 @@ public class Food : MonoBehaviour
 
                 Chunk c;
                 if (World.chunkDict.TryGetValue(chunkName, out c)) {
-                    Instantiate(food);
-                    food.transform.position = new Vector3((int)(Mathf.Round(hitBlock.x)), (int)(Mathf.Round(hitBlock.y)), (int)(Mathf.Round(hitBlock.z)));
-                    food.transform.parent = this.transform;
-                    food.tag = "Food";
+                    GameObject sFood = Instantiate(food);
+                    sFood.SetActive(true);
+                    sFood.transform.position = new Vector3((int)(Mathf.Round(hitBlock.x)), (int)(Mathf.Round(hitBlock.y)), (int)(Mathf.Round(hitBlock.z)));
+                    sFood.transform.parent = this.transform;
+                    sFood.tag = "Food";
+
+                    /*GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    cube.transform.position = new Vector3((int)(Mathf.Round(hitBlock.x)), (int)(Mathf.Round(hitBlock.y)), (int)(Mathf.Round(hitBlock.z)));
+                    cube.transform.parent = this.transform;
+                    cube.tag = "Food";*/
+
+                    //cube.GetComponent<MeshRenderer>().material = materialFood;
+                    //sFood.AddComponent<CapsuleCollider>();
+                    //sFood.GetComponent<CapsuleCollider>().isTrigger = true;
                     //cube.GetComponent<MeshRenderer>().material = materialFood;
                     foodSound.Play();
                 }

@@ -45,12 +45,12 @@ public class SpawnSheeps : MonoBehaviour {
         for (int i = 0; i < n; i++) {
             GameObject sheep = Instantiate(goSheep);
             sheep.SetActive(true);
-            sheep.transform.position = new Vector3(player.position.x + Random.Range(-30, 30), player.position.y + 20, player.position.z + Random.Range(-30, 30));
+            sheep.transform.position = new Vector3(player.position.x + Random.Range(-25, 25), player.position.y+5, player.position.z + Random.Range(-25, 25));
             sheep.transform.parent = this.transform;
             sheep.tag = "Sheep";
             Helper.allSheeps.Add(sheep);
         }
-
+      
     }
 
     private void deleteIfDist() {

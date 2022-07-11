@@ -101,7 +101,7 @@ public class Sheep : Agent {
 
     private void duplicate() {
         GameObject sheep = Instantiate(this.gameObject);
-        sheep.transform.position = new Vector3(this.transform.position.x + Random.Range(-5, 5), this.transform.position.y + 5, this.transform.position.z + Random.Range(-5, 5));
+        sheep.transform.position = new Vector3(this.transform.position.x + Random.Range(-5, 5), this.transform.position.y, this.transform.position.z + Random.Range(-5, 5));
         sheep.tag = "Sheep"; 
         Helper.allSheeps.Add(sheep);
     }

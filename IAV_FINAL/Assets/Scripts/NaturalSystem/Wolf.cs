@@ -53,6 +53,10 @@ public class Wolf : Agent {
         if (other.gameObject.CompareTag("Wall")) {
             AddReward(-1f);
         }
+        if (other.gameObject.CompareTag("Food")) {
+            Destroy(other.gameObject);
+            AddReward(-0.5f);
+        }
         if (other.gameObject.CompareTag("Player")) {
             AddReward(-1f);
         }
