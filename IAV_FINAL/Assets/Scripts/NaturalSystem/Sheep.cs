@@ -15,22 +15,28 @@ public class Sheep : Agent {
     private float gainHPEat = 50f;
     private bool canDelete;
     private int timeAlive;
-    private int timeReproduce = 60; //segundos
+    private int timeReproduce = 300; //segundos
+    public Transform player;
 
     [SerializeField] private AudioSource dieSheepSound;
     [SerializeField] private AudioSource eatSound;
 
-   
-
-
     public override void OnActionReceived(ActionBuffers actions) {
 
-        float moveSpeed = 30f;
-        float rotateSpeed = 300f;
+        float moveSpeed = 20f;
+        float rotateSpeed = 250f;
         float move = actions.ContinuousActions[0];
         float rotate = actions.ContinuousActions[1];
         transform.Rotate(new Vector3(0, rotate * Time.fixedDeltaTime * rotateSpeed, 0));
         transform.localPosition += transform.forward * move * Time.fixedDeltaTime * moveSpeed;
+
+        //Debug.Log(Vector3.Distance(player.position, transform.localPosition));
+        if (Vector3.Distance(player.position, transform.localPosition) > 40f) {
+            AddReward(-1f);
+        }
+       /* else {
+            AddReward(0.1f);
+        }*/
 
         AddReward(-0.0001f);
 
@@ -48,7 +54,7 @@ public class Sheep : Agent {
             Destroy(other.gameObject);
             this.setThisHP(this.getHP() + gainHPEat);
             
-            AddReward(1f);
+            AddReward(1.5f);
         }
         if (other.gameObject.CompareTag("Wall")) {
             AddReward(-1f);

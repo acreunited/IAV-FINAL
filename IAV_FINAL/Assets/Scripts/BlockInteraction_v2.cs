@@ -19,7 +19,7 @@ public class BlockInteraction_v2 : MonoBehaviour
     {
         type = new Block.BlockType[]{ Block.BlockType.STONE, Block.BlockType.DIRT, Block.BlockType.GOLD};
         blocks = new string[] { "STONE", "DIRT", "GOLD" };
-        blockType.text = blocks[pointer];
+       // blockType.text = blocks[pointer];
 
     }
 

@@ -42,16 +42,7 @@ public class Food : MonoBehaviour
                     sFood.transform.position = new Vector3((int)(Mathf.Round(hitBlock.x)), (int)(Mathf.Round(hitBlock.y)), (int)(Mathf.Round(hitBlock.z)));
                     sFood.transform.parent = this.transform;
                     sFood.tag = "Food";
-
-                    /*GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    cube.transform.position = new Vector3((int)(Mathf.Round(hitBlock.x)), (int)(Mathf.Round(hitBlock.y)), (int)(Mathf.Round(hitBlock.z)));
-                    cube.transform.parent = this.transform;
-                    cube.tag = "Food";*/
-
-                    //cube.GetComponent<MeshRenderer>().material = materialFood;
-                    //sFood.AddComponent<CapsuleCollider>();
-                    //sFood.GetComponent<CapsuleCollider>().isTrigger = true;
-                    //cube.GetComponent<MeshRenderer>().material = materialFood;
+                    
                     foodSound.Play();
                 }
             }

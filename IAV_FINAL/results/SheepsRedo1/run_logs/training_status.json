@@ -1,0 +1,29 @@
+{
+    "Sheeps": {
+        "checkpoints": [
+            {
+                "steps": 377026,
+                "file_path": "results\\SheepsRedo1\\Sheeps\\Sheeps-377026.onnx",
+                "reward": 0.27625242392795085,
+                "creation_time": 1657573597.763356,
+                "auxillary_file_paths": [
+                    "results\\SheepsRedo1\\Sheeps\\Sheeps-377026.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 377026,
+            "file_path": "results\\SheepsRedo1\\Sheeps.onnx",
+            "reward": 0.27625242392795085,
+            "creation_time": 1657573597.763356,
+            "auxillary_file_paths": [
+                "results\\SheepsRedo1\\Sheeps\\Sheeps-377026.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}

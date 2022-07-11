@@ -28,7 +28,7 @@ public class SpawnSheeps : MonoBehaviour {
     void Update() {
         if (canSpawn) {
             canSpawn = false;
-            Spawn(35);
+            Spawn(50);
             
         }
 
