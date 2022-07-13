@@ -198,6 +198,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 187370979}
   m_CullTransparentMesh: 1
+--- !u!1 &298331746 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4909321149650273713, guid: 5efbdff695d22544890988ce1a13dd25, type: 3}
+  m_PrefabInstance: {fileID: 2115407862}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &298331747
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298331746}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.34, y: 1.3, z: 1}
+  m_Center: {x: -0.02, y: 0.27, z: 6.47}
 --- !u!20 &302232704 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 20437472682476688, guid: 11aaea5348574644a9eb4f4504fcce3f, type: 3}
@@ -492,7 +510,7 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
   ui: {fileID: 1762856769}
-  player: {fileID: 0}
+  player: {fileID: 1731761324}
   dieSheepSound: {fileID: 584628554}
   eatSound: {fileID: 584628553}
 --- !u!114 &584628556
@@ -517,7 +535,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: ecc87a712395a9f48874a1b8d29f9d91, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 1bafe05f8eab86544b6bcf3014597380, type: 3}
   m_InferenceDevice: 2
   m_BehaviorType: 0
   m_BehaviorName: Sheeps
@@ -541,8 +559,8 @@ MonoBehaviour:
   m_DetectableTags:
   - Food
   - Wall
-  m_RaysPerDirection: 3
-  m_MaxRayDegrees: 70
+  m_RaysPerDirection: 5
+  m_MaxRayDegrees: 80
   m_SphereCastRadius: 0.5
   m_RayLength: 20
   m_RayLayerMask:
@@ -553,6 +571,20 @@ MonoBehaviour:
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
   m_StartVerticalOffset: 0
   m_EndVerticalOffset: 0
+--- !u!136 &584628561
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584628552}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.4
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1001 &595247108
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -563,6 +595,10 @@ PrefabInstance:
     - target: {fileID: 54689378711371506, guid: 9843f84f57901b24989015eec2c123ac, type: 3}
       propertyPath: m_UseGravity
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 54689378711371506, guid: 9843f84f57901b24989015eec2c123ac, type: 3}
+      propertyPath: m_Constraints
+      value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 54689378711371506, guid: 9843f84f57901b24989015eec2c123ac, type: 3}
       propertyPath: m_CollisionDetection
@@ -860,11 +896,11 @@ GameObject:
   - component: {fileID: 813746849}
   m_Layer: 0
   m_Name: Sheeps
-  m_TagString: Untagged
+  m_TagString: Sheep
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &813746848
 Transform:
   m_ObjectHideFlags: 0
@@ -906,11 +942,11 @@ GameObject:
   - component: {fileID: 870043378}
   m_Layer: 0
   m_Name: Wolfs
-  m_TagString: Untagged
+  m_TagString: Wolf
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &870043377
 Transform:
   m_ObjectHideFlags: 0
@@ -1289,7 +1325,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &1186080278
 MonoBehaviour:
@@ -1307,9 +1343,9 @@ MonoBehaviour:
   m_DetectableTags:
   - Sheep
   - Wall
-  - Player
-  m_RaysPerDirection: 3
-  m_MaxRayDegrees: 70
+  - Food
+  m_RaysPerDirection: 5
+  m_MaxRayDegrees: 80
   m_SphereCastRadius: 0.5
   m_RayLength: 20
   m_RayLayerMask:
@@ -1337,6 +1373,7 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
   ui: {fileID: 1762856769}
+  player: {fileID: 1731761324}
   dieSheepSound: {fileID: 1186080284}
   dieWolfSound: {fileID: 1186080283}
 --- !u!114 &1186080280
@@ -1361,7 +1398,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 6c1ad68fb8d04fc48b41ffcabe6032d7, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 8a4e37bbca809644fb9aed356098d3dc, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: Wolfs
@@ -2308,7 +2345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   materialFood: {fileID: 2100000, guid: 851cb1d3bb1eb2746a8e074af7a913b7, type: 2}
   cam: {fileID: 302232704}
-  food: {fileID: 4909321149650273713, guid: 5efbdff695d22544890988ce1a13dd25, type: 3}
+  food: {fileID: 298331746}
   foodSound: {fileID: 1545922024}
 --- !u!82 &1545922024
 AudioSource:
@@ -2420,6 +2457,10 @@ PrefabInstance:
     - target: {fileID: 175852, guid: f8243bb353e5cb74481bb26fe62fd298, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 175852, guid: f8243bb353e5cb74481bb26fe62fd298, type: 3}
+      propertyPath: m_TagString
+      value: Wolf
       objectReference: {fileID: 0}
     - target: {fileID: 477254, guid: f8243bb353e5cb74481bb26fe62fd298, type: 3}
       propertyPath: m_RootOrder
@@ -3066,6 +3107,7 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
   ui: {fileID: 1762856769}
+  player: {fileID: 0}
   dieSheepSound: {fileID: 0}
   dieWolfSound: {fileID: 0}
 --- !u!114 &1902584608
@@ -3311,3 +3353,64 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1935066900}
   m_CullTransparentMesh: 1
+--- !u!1001 &2115407862
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4909321149649787281, guid: 5efbdff695d22544890988ce1a13dd25, type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4909321149649787281, guid: 5efbdff695d22544890988ce1a13dd25, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5651
+      objectReference: {fileID: 0}
+    - target: {fileID: 4909321149649787281, guid: 5efbdff695d22544890988ce1a13dd25, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4909321149649787281, guid: 5efbdff695d22544890988ce1a13dd25, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4909321149649787281, guid: 5efbdff695d22544890988ce1a13dd25, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4909321149649787281, guid: 5efbdff695d22544890988ce1a13dd25, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4909321149649787281, guid: 5efbdff695d22544890988ce1a13dd25, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4909321149649787281, guid: 5efbdff695d22544890988ce1a13dd25, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4909321149649787281, guid: 5efbdff695d22544890988ce1a13dd25, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4909321149649787281, guid: 5efbdff695d22544890988ce1a13dd25, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4909321149649787281, guid: 5efbdff695d22544890988ce1a13dd25, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4909321149650273713, guid: 5efbdff695d22544890988ce1a13dd25, type: 3}
+      propertyPath: m_Name
+      value: plant1 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4909321149650273713, guid: 5efbdff695d22544890988ce1a13dd25, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5efbdff695d22544890988ce1a13dd25, type: 3}

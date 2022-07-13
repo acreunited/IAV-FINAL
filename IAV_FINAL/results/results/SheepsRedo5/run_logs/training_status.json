@@ -1,0 +1,65 @@
+{
+    "Sheeps": {
+        "checkpoints": [
+            {
+                "steps": 691393,
+                "file_path": "results\\SheepsRedo5\\Sheeps\\Sheeps-691393.onnx",
+                "reward": -0.14620986215013276,
+                "creation_time": 1657649895.9299607,
+                "auxillary_file_paths": [
+                    "results\\SheepsRedo5\\Sheeps\\Sheeps-691393.pt"
+                ]
+            },
+            {
+                "steps": 777359,
+                "file_path": "results\\SheepsRedo5\\Sheeps\\Sheeps-777359.onnx",
+                "reward": -0.2102319835178753,
+                "creation_time": 1657651055.7797086,
+                "auxillary_file_paths": [
+                    "results\\SheepsRedo5\\Sheeps\\Sheeps-777359.pt"
+                ]
+            },
+            {
+                "steps": 999996,
+                "file_path": "results\\SheepsRedo5\\Sheeps\\Sheeps-999996.onnx",
+                "reward": -0.06876210341452507,
+                "creation_time": 1657652719.8126023,
+                "auxillary_file_paths": [
+                    "results\\SheepsRedo5\\Sheeps\\Sheeps-999996.pt"
+                ]
+            },
+            {
+                "steps": 1327169,
+                "file_path": "results\\SheepsRedo5\\Sheeps\\Sheeps-1327169.onnx",
+                "reward": -0.23036643483553498,
+                "creation_time": 1657654716.1076474,
+                "auxillary_file_paths": [
+                    "results\\SheepsRedo5\\Sheeps\\Sheeps-1327169.pt"
+                ]
+            },
+            {
+                "steps": 1471942,
+                "file_path": "results\\SheepsRedo5\\Sheeps\\Sheeps-1471942.onnx",
+                "reward": -0.21277958272259356,
+                "creation_time": 1657655921.2291875,
+                "auxillary_file_paths": [
+                    "results\\SheepsRedo5\\Sheeps\\Sheeps-1471942.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1471942,
+            "file_path": "results\\SheepsRedo5\\Sheeps.onnx",
+            "reward": -0.21277958272259356,
+            "creation_time": 1657655921.2291875,
+            "auxillary_file_paths": [
+                "results\\SheepsRedo5\\Sheeps\\Sheeps-1471942.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}

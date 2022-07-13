@@ -16,6 +16,7 @@ public class Wolf : Agent {
     private bool canDelete;
     private int timeAlive;
     private int timeReproduce = 60; //segundos
+    public Transform player;
 
     [SerializeField] private AudioSource dieSheepSound;
     [SerializeField] private AudioSource dieWolfSound;
@@ -26,12 +27,16 @@ public class Wolf : Agent {
 
     public override void OnActionReceived(ActionBuffers actions) {
 
-        float moveSpeed = 30f;
-        float rotateSpeed = 300f;
+        float moveSpeed = 50f;
+        float rotateSpeed = 500f;
         float move = actions.ContinuousActions[0];
         float rotate = actions.ContinuousActions[1];
         transform.Rotate(new Vector3(0, rotate * Time.fixedDeltaTime * rotateSpeed, 0));
         transform.localPosition += transform.forward * move * Time.fixedDeltaTime * moveSpeed;
+
+        if (Vector3.Distance(this.transform.position, player.position) > 30f) {
+            AddReward(-1f);
+        }
 
         AddReward(-0.0001f);
 
@@ -55,10 +60,6 @@ public class Wolf : Agent {
         }
         if (other.gameObject.CompareTag("Food")) {
             Destroy(other.gameObject);
-            AddReward(-0.5f);
-        }
-        if (other.gameObject.CompareTag("Player")) {
-            AddReward(-1f);
         }
 
 
@@ -90,7 +91,6 @@ public class Wolf : Agent {
     }
 
     private void Update() {
-
         
 
         if (this.getHP() <= 0f) {

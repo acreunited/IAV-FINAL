@@ -23,16 +23,16 @@ public class Sheep : Agent {
 
     public override void OnActionReceived(ActionBuffers actions) {
 
-        float moveSpeed = 20f;
-        float rotateSpeed = 250f;
+        float moveSpeed = 50f;
+        float rotateSpeed = 500f;
         float move = actions.ContinuousActions[0];
         float rotate = actions.ContinuousActions[1];
         transform.Rotate(new Vector3(0, rotate * Time.fixedDeltaTime * rotateSpeed, 0));
         transform.localPosition += transform.forward * move * Time.fixedDeltaTime * moveSpeed;
 
         //Debug.Log(Vector3.Distance(player.position, transform.localPosition));
-        if (Vector3.Distance(player.position, transform.localPosition) > 40f) {
-            AddReward(-1f);
+        if (Vector3.Distance(player.position, transform.localPosition) > 30f) {
+            AddReward(-0.1f);
         }
        /* else {
             AddReward(0.1f);

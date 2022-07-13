@@ -1,0 +1,42 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1657631957",
+        "python_version": "3.9.2 (tags/v3.9.2:1a79785, Feb 19 2021, 13:44:55) [MSC v.1928 64 bit (AMD64)]",
+        "command_line_arguments": "D:\\ISEL\\IAV\\IAV_Aula2\\IAV-Aulas2\\venv\\Scripts\\mlagents-learn --run-id=SheepsRedo4 --resume config/Sheeps.yaml",
+        "mlagents_version": "0.29.0",
+        "mlagents_envs_version": "0.29.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "1.7.1+cu110",
+        "numpy_version": "1.22.3",
+        "end_time_seconds": "1657631959"
+    },
+    "total": 1.6149171,
+    "count": 1,
+    "self": 0.011828399999999961,
+    "children": {
+        "run_training.setup": {
+            "total": 0.12580550000000001,
+            "count": 1,
+            "self": 0.12580550000000001
+        },
+        "TrainerController.start_learning": {
+            "total": 1.4772832,
+            "count": 1,
+            "self": 0.0001714999999999911,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 1.4770962,
+                    "count": 1,
+                    "self": 1.4770962
+                },
+                "TrainerController._save_models": {
+                    "total": 1.5499999999946112e-05,
+                    "count": 1,
+                    "self": 1.5499999999946112e-05
+                }
+            }
+        }
+    }
+}
