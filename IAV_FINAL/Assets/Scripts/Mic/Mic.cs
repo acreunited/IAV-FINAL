@@ -44,67 +44,48 @@ public class Mic : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-       /*float energy = AudioAnalysis.MeanEnergy(audioSource);
+       float energy = AudioAnalysis.MeanEnergy(audioSource);
 
         if (AudioAnalysis.ConvertToDB(energy) > 40 && canCreate) {
             canCreate = false;
             float peakFrequency = AudioAnalysis.ComputeSpectrumPeak(audioSource, true);
-            // Debug.Log(peakFrequency);
             float concentration = AudioAnalysis.ConcentrationAroundPeak(peakFrequency);
-            Debug.Log(concentration);
+
             //assombio
             if (concentration > 0.8f) {
-                createAnimal(Animals.SHEEP);
-            }
-            //bater palmas
-            else if (concentration < 4.5f) {
-                createAnimal(Animals.WOLF);
-            }
-            this.StartCoroutine(TimeToCreate());
+                RaycastHit hit;
+                if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 10)) {
+                    string chunkName = hit.collider.name;
+                    float chunkx = hit.collider.gameObject.transform.position.x;
+                    float chunky = hit.collider.gameObject.transform.position.y;
+                    float chunkz = hit.collider.gameObject.transform.position.z;
+                    Vector3 hitBlock = hit.point - hit.normal / 2f;
 
-        }*/
+                    int blockx = (int)(Mathf.Round(hitBlock.x) - chunkx);
+                    int blocky = (int)(Mathf.Round(hitBlock.y) - chunky);
+                    int blockz = (int)(Mathf.Round(hitBlock.z) - chunkz);
+                    Chunk c;
+                    if (World.chunkDict.TryGetValue(chunkName, out c)) {
+                        if (c.chunkdata[blockx, blocky, blockz].canRemove()) {
+                            c.chunkdata[blockx, blocky, blockz].SetType(Block.BlockType.GRASS);
+                        }
 
-    }
-
-    private void createAnimal(Animals animal) {
-        RaycastHit hit;
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 10)) {
-
-            string chunkName = hit.collider.gameObject.name;
-            float chunkx = hit.collider.gameObject.transform.position.x;
-            float chunky = hit.collider.gameObject.transform.position.y;
-            float chunkz = hit.collider.gameObject.transform.position.z;
-
-            Vector3 hitBlock = hit.point + hit.normal / 2f;
-
-            //int blockx = (int)(Mathf.Round(hitBlock.x) + chunkx);
-            //int blocky = (int)(Mathf.Round(hitBlock.y) + chunky);
-            //int blockz = (int)(Mathf.Round(hitBlock.z) + chunkz);
-
-            Chunk c;
-            if (World.chunkDict.TryGetValue(chunkName, out c)) {
-
-                GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                //cube.transform.position = new Vector3(blockx, blocky, blockz);
-                cube.transform.position = new Vector3( (int)(Mathf.Round(hitBlock.x)), (int)(Mathf.Round(hitBlock.y)), (int)(Mathf.Round(hitBlock.z)) );
-
-                if (animal == Animals.SHEEP) {
-                     cube.transform.parent = sheeps.transform;
-                     cube.tag = "Sheep";
-                     cube.GetComponent<MeshRenderer>().material = materialSheep;
-                }
-                else if (animal == Animals.WOLF) {
-                     cube.transform.parent = wolfs.transform;
-                     cube.tag = "Wolf";
-                     cube.GetComponent<MeshRenderer>().material = materialWolf;
+                        DestroyImmediate(c.goChunk.GetComponent<MeshFilter>());
+                        DestroyImmediate(c.goChunk.GetComponent<MeshRenderer>());
+                        DestroyImmediate(c.goChunk.GetComponent<MeshCollider>());
+                        c.DrawChunk();
+                    }
                 }
 
-            }
 
-           
-            
+            }
+ 
+
         }
+
     }
+
+   
 
     IEnumerator TimeToCreate() {
         yield return new WaitForSeconds(1);
