@@ -8,7 +8,6 @@ public class Block {
     public enum BlockType { GRASS, DIRT, STONE, AIR, GOLD };
     Material material;
     BlockType bType;
-    bool remove;
 
     Chunk owner;
     Vector3 pos;
@@ -40,7 +39,6 @@ public class Block {
         this.owner = owner;
         this.pos = pos;
         this.material = material;
-        remove = false;
 
         if (bType == BlockType.AIR) {
             isSolid = false;
@@ -51,12 +49,7 @@ public class Block {
         
     }
 
-    public bool canRemove() {
-        return this.remove;
-    }
-    public void setCanRemove(bool can) {
-         this.remove = can;
-    }
+
 
     public void SetType(BlockType bType) {
         this.bType = bType;

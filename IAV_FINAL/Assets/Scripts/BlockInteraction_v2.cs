@@ -59,16 +59,14 @@ public class BlockInteraction_v2 : MonoBehaviour
                 Chunk c;
                 if(World.chunkDict.TryGetValue(chunkName,out c))
                 {
-                    if (interactionType == InteractionType.DESTROY && c.chunkdata[blockx, blocky, blockz].canRemove())
+                    if (interactionType == InteractionType.DESTROY)
                     {
                         c.chunkdata[blockx, blocky, blockz].SetType(Block.BlockType.AIR);
-                        c.chunkdata[blockx, blocky, blockz].setCanRemove(false);
                         Debug.Log("can");
                     }
                     else if(interactionType == InteractionType.BUILD)
                     {
                         c.chunkdata[blockx, blocky, blockz].SetType(type[pointer]);
-                        c.chunkdata[blockx, blocky, blockz].setCanRemove(true);
                         c.goChunk.tag = "Wall";
                     }
                     DestroyImmediate(c.goChunk.GetComponent<MeshFilter>());

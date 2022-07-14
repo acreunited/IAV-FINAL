@@ -50,14 +50,13 @@ public class BlockInteraction : MonoBehaviour
 
                 Chunk c;
                 if (World.chunkDict.TryGetValue(chunkName, out c)) {
-                    if (interactionType == InteractionType.DESTROY && c.chunkdata[blockx, blocky, blockz].canRemove() ) {
+                    if (interactionType == InteractionType.DESTROY ) {
                         c.chunkdata[blockx, blocky, blockz].SetType(Block.BlockType.AIR);
                     }
                     else if (interactionType == InteractionType.BUILD ) {
                         
                         canCreate = false;
                         c.chunkdata[blockx, blocky, blockz].SetType(Block.BlockType.STONE);
-                        c.chunkdata[blockx, blocky, blockz].setCanRemove(true);
                         c.goChunk.tag = "Wall";
                         Debug.Log("hello");
                         //this.StartCoroutine(TimeToCreate());                       

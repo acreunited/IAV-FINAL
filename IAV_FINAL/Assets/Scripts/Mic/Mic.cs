@@ -66,9 +66,9 @@ public class Mic : MonoBehaviour {
                     int blockz = (int)(Mathf.Round(hitBlock.z) - chunkz);
                     Chunk c;
                     if (World.chunkDict.TryGetValue(chunkName, out c)) {
-                        if (c.chunkdata[blockx, blocky, blockz].canRemove()) {
-                            c.chunkdata[blockx, blocky, blockz].SetType(Block.BlockType.GRASS);
-                        }
+                       
+                        c.chunkdata[blockx, blocky, blockz].SetType(Block.BlockType.GRASS);
+                       
 
                         DestroyImmediate(c.goChunk.GetComponent<MeshFilter>());
                         DestroyImmediate(c.goChunk.GetComponent<MeshRenderer>());
