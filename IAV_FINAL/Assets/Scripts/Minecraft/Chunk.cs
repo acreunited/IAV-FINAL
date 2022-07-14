@@ -41,7 +41,7 @@ public class Chunk
                     //Debug.Log(Utils.fBM3D(worldX, worldY, worldZ, 1, 0.5f));
                     //Grapher.Log(Utils.fBM3D(worldX, worldY, worldZ, 1, 0.5f), "fBM3D", Color.yellow);
 
-                    /*if (worldY <= hs) {
+                    if (worldY <= hs) {
                         if (Utils.fBM3D(worldX, worldY, worldZ, 1, 0.5f)<0.495f) {
                             chunkdata[x, y, z] = new Block(Block.BlockType.STONE, pos, this, material);
                         }
@@ -57,7 +57,7 @@ public class Chunk
                     }
                     else {
                         chunkdata[x, y, z] = new Block(Block.BlockType.AIR, pos, this, material);
-                    }*/
+                    }
                 }
             }
         }

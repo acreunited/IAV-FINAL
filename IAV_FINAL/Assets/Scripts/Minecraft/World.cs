@@ -37,9 +37,9 @@ public class World : MonoBehaviour
         yield return null;
         Building(new Vector3(x-chunkSize, y, z), rad);
         yield return null;
-        //Building(new Vector3(x, y + chunkSize, z ), rad);
-        //yield return null;
-        //Building(new Vector3(x, y + chunkSize, z ), rad);
+        Building(new Vector3(x, y + chunkSize, z ), rad);
+        yield return null;
+        Building(new Vector3(x, y + chunkSize, z ), rad);
     }
 
     void BuildChunkAt(Vector3 chunkPos) {
